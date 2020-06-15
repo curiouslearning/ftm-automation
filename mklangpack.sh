@@ -82,6 +82,8 @@ then
 		cp *parents*.png $newlpdata"/art/titles" 2>/dev/null || :
 		cp *Parents*.png $newlpdata"/art/titles" 2>/dev/null || :
 		cp SEL_*.png $newlpdata"/art/titles" 2>/dev/null || :
+		cp *base.png $newlpdata"/art/titles" 2>/dev/null || :
+		cp *v03_logo.png $newlpdata"/art/titles" 2>/dev/null || :
 	}
 
 	cd "Art/Splash"
