@@ -44,7 +44,9 @@ then
 	echo "copying sounds"
 	cd "Sounds/Voice"
 	cp letters/*.wav $newlpdata"/sounds/letters"
+	cp letters/*.WAV $newlpdata"/sounds/letters"
 	cp words/*.wav $newlpdata"/sounds/words"
+	cp words/*.WAV $newlpdata"/sounds/words"
 	if [ -d "Syllables" ]
 	then
 		cp syllables/*.wav $newlpdata"/sounds/letters"
@@ -52,6 +54,8 @@ then
 	fi
 	cp Feedbacks/Positive/*.wav $newlpdata"/sounds/feedbacks"
 	cp Instructions/*.wav $newlpdata"/sounds/other"
+	cp Feedbacks/Positive/*.WAV $newlpdata"/sounds/feedbacks"
+	cp Instructions/*.WAV $newlpdata"/sounds/other"
 
 	cd ../../
 	if [ -d "charimg" ]
@@ -84,6 +88,7 @@ then
 		cp SEL_*.png $newlpdata"/art/titles" 2>/dev/null || :
 		cp *base.png $newlpdata"/art/titles" 2>/dev/null || :
 		cp *v03_logo.png $newlpdata"/art/titles" 2>/dev/null || :
+		cp *$newdir*.png $newlpdata"/art/titles" 2>/dev/null || :
 	}
 
 	cd "Art/Splash"
@@ -92,6 +97,18 @@ then
 	cd ../
 	cd "Titles"
 	copyimages
+	if [ -d "Instructions" ]
+	then
+		cd "Instructions"
+		copyimages
+		cd ../
+	fi
+	if [ -d "ParentsProgression" ]
+	then
+		cd "ParentsProgression"
+		copyimages
+		cd ../
+	fi
 	cd "Feedbacks/Positive"
 	copyimages
 
