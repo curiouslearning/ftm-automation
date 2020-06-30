@@ -1,0 +1,24 @@
+are_you_sure.png
+bonus_level (eng).png
+can_you_pet_me.png
+happy_we_are_friends (eng).png
+I_feel_better.png
+Lets_write_letters.png
+new_friend.png
+now_im_happy.png
+parents_progession_LETERS.png
+parents_progression_VOWELS.png
+parents_progression_WORDS.png
+playing_together (eng).png
+Selection_choose_your_monster 01.png
+select_new_monster.png
+Select_your_player.png
+SEL_popup_AfraidTxt_v01.png
+SEL_popup_AngryText_v01.png
+SEL_popup_BoredText_v01.png
+SEL_popup_HungryText_v01.png
+SEL_popup_SadText_v01.png
+that_was_delicious (eng).png
+Treasure_feedback_01.png
+try_writing_this_letter (eng).png
+watch_me_grow (eng).png
