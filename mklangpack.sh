@@ -1,6 +1,6 @@
 #!/bin/bash
 
-lpbase="/mnt/o/ftm/langpackdata"
+lpbase="/mnt/o/ftm/lpd/ftm-languagepacks"
 cd $lpbase
 
 pwd
@@ -11,6 +11,13 @@ if [ -z "$1" ]
   then
     echo "No argument supplied"
 		exit 1
+fi
+
+if [ -z "$2" ]
+	then
+		baselook="unitywork"
+	else
+		baselook=$2
 fi
 
 echo "making "$newdir
@@ -37,7 +44,7 @@ then
 	pwd
 
 	echo "copying levels"
-	cd "unitywork/Feed The Monster/Assets/Resources/Gameplay/Levels"
+	cd $baselook"/Feed The Monster/Assets/Resources/Gameplay/Levels"
 	cp *.xml $newlpdata"/levels"
 
 	cd ../../
@@ -114,6 +121,42 @@ then
 
 	echo "parsing memory game assets"
 	python /mnt/o/ftm/buildengine/memgameparser.py $newdir
+
+	cd $newlpdata
+	echo "-----"
+	echo "checking missing files:"
+
+	function checkmissing {
+		if [ ! -f "$1" ]
+		then
+			echo "missing "$1 >> /mnt/o/ftm/buildengine/missing$newdir.txt
+		fi
+	}
+
+	function checklist {
+		if [ -f "/mnt/o/ftm/buildengine/missing$newdir.txt" ]
+		then
+			rm  "/mnt/o/ftm/buildengine/missing$newdir.txt"
+		fi
+
+		while IFS= read -r line
+		do
+		  checkmissing "$line"
+		done < /mnt/o/ftm/buildengine/$1
+
+
+	}
+	cd art
+	cd feedbacks
+	checklist artfeedbacks.txt
+	cd ../
+	cd memg
+	checklist artmemg.txt
+	cd ../../
+	cd sounds
+	cd other
+	checklist soundsother.txt
+
 
 
 else

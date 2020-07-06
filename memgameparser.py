@@ -64,7 +64,7 @@ for mw in wordstocomp:
 i = 0
 if (len(usablewords) >= len(pairs)):
 	print "copying memory game assets"
-	pairassetbase = "/mnt/o/ftm/langpackdata/" + argv[1] + "/art/memg/"
+	pairassetbase = "/mnt/o/ftm/lpd/ftm-languagepacks/" + argv[1] + "/art/memg/"
 	for pairroot in pairs:
 		uw = usablewords[i]
 		shutil.copyfile(uw[1][0],pairassetbase + "memg_" + pairroot + "_a.jpg")
