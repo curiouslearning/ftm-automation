@@ -21,31 +21,34 @@ if [ ! -f "bundletool-all-0.10.3.jar" ]
 		exit 1
 fi
 
-#parsing language name
-inputfile=$1
-inputname="$(basename $inputfile)"
-prefix='FeedTheMonster'
-suffix='.aab'
-partial=${inputname/#$prefix}
-langname=${partial/%$suffix}
-echo "parsing "$langname
+for aabtodo in "$@"
+do
+	#parsing language name
+	inputfile=$aabtodo
+	inputname="$(basename $inputfile)"
+	prefix='FeedTheMonster'
+	suffix='.aab'
+	partial=${inputname/#$prefix}
+	langname=${partial/%$suffix}
+	echo "parsing "$langname
 
-#parsing version code
-versionnum="$(java -jar bundletool-all-0.10.3.jar dump manifest --bundle=$inputfile --xpath=/manifest/@android:versionCode)"
-echo "android version code "$versionnum
+	#parsing version code
+	versionnum="$(java -jar bundletool-all-0.10.3.jar dump manifest --bundle=$inputfile --xpath=/manifest/@android:versionCode)"
+	echo "android version code "$versionnum
 
-#running bundletool
-echo "generating apk, this will take a minute"
-java -jar bundletool-all-0.10.3.jar build-apks --bundle=$inputfile --output=o.apks --ks=$keystorefile --ks-pass=pass:$keystorepw --ks-key-alias=$keystorealias --key-pass=pass:$keystorepw --mode=universal
+	#running bundletool
+	echo "generating apk, will take a minute"
+	java -jar bundletool-all-0.10.3.jar build-apks --bundle=$inputfile --output=o.apks --ks=$keystorefile --ks-pass=pass:$keystorepw --ks-key-alias=$keystorealias --key-pass=pass:$keystorepw --mode=universal
 
-#extracting apk
-mv o.apks o.zip
-unzip o.zip -d outputzip
-cd outputzip
-mv universal.apk "../ftm_"$langname"_v"$versionnum"_universal.apk"
-echo "output: ftm_"$langname"_v"$versionnum"_universal.apk"
-cd ../
+	#extracting apk
+	mv o.apks o.zip
+	unzip o.zip -d outputzip
+	cd outputzip
+	mv universal.apk "../ftm_"$langname"_v"$versionnum"_universal.apk"
+	echo "output: ftm_"$langname"_v"$versionnum"_universal.apk"
+	cd ../
 
-#cleaning up files
-rm o.zip
-rm -r outputzip
+	#cleaning up files
+	rm o.zip
+	rm -r outputzip
+done
