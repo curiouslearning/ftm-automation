@@ -1,7 +1,7 @@
 # FeedTheMonster Level Generation
 
 ## Building a levelgen.csv
-The levelgen file is a comma-separated value file where each row after the first defines a level in the game. A sample_levelgen.csv is provided as an example of a levelgen for an English-language game with 150 levels, utilizing all level types.
+The levelgen file is a comma-separated value file where each row after the first defines a level in the game. A sample_levelgen.csv is provided as an example of a levelgen for an English-language game with 150 levels, utilizing all level types. This sample is also available in [spreadsheet form](https://docs.google.com/spreadsheets/u/3/d/1PyWYpfwg04fhrcnkSNFM7cSQTNj34XV3NS_iAMe8IfY).
 
 Each line takes the form *targets, type, notes*.
 
