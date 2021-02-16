@@ -36,9 +36,9 @@ def makeFoil (levelletters, targetletter):
 ########### MAIN ######
 foilstones = []
 
-indir = '/mnt/o/FTM/buildengine/input_154/'
-outdir = '/mnt/o/FTM/USENGLISH/levels/'
-with open('/mnt/o/FTM/USENGLISH/levelgen2.csv', 'rb') as csvfile:
+indir = '/mnt/o/FTM/buildengine/level_generation/input_154/'
+outdir = '/mnt/o/FTM/USENGLISH/levels_new/'
+with open('/mnt/o/FTM/USENGLISH/subskillslevelgen.csv', 'rb') as csvfile:
 	masterCSV = csv.reader(csvfile)
 	next(masterCSV)
 	rownum = 0
@@ -50,6 +50,9 @@ with open('/mnt/o/FTM/USENGLISH/levelgen2.csv', 'rb') as csvfile:
 		group = int(treeRoot.get('LettersGroup'))
 		print ("parsing " + f)
 		leveltype = row[1]
+		levelMainSkill = row[2]
+		levelSubSkill = row[3]
+		levelSubSkillAmount = row[4]
 		#print(leveltype)
 		if (leveltype == "match"):
 			treeRoot.set('monsterInputType', "Letter")
@@ -57,6 +60,10 @@ with open('/mnt/o/FTM/USENGLISH/levelgen2.csv', 'rb') as csvfile:
 			treeRoot.set('monsterInputType', "LetterInWord")
 		if (leveltype == "spell"):
 			treeRoot.set('monsterInputType', "Word")
+
+		treeRoot.set("mainskill",levelMainSkill)
+		treeRoot.set("subskill",levelSubSkill)
+		treeRoot.set("subskillAmt",levelSubSkillAmount)
 
 		messylettersinlevel = row[0].split(",")
 		lettersinlevel = [x.decode('utf8') for x in messylettersinlevel if x !=' ']
