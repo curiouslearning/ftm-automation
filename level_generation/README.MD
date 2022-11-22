@@ -41,4 +41,6 @@ Before running the python script that parses a levelgen, be sure to edit lines 3
 `python parselevelgen.py`
 
 ## Template folders
-The folder input_154 contains a set of level template files that are used by the parselevelgen.py script to generate new levels. Their location must be defined in the parselevelgen.py script.
+The folder input_154 contains a set of level template files that are used by the parselevelgen.py script to generate new levels. Their location must be defined in the parselevelgen.py script. The python script makes a copy of the template levels, ans then replaces the target/option values with values from the language-specific levelgen.
+
+The templates are defined so that levels gradually go from two to three stones to choose from at the beginning to more choices at the end- if you want to change the number of choices present, editing the template xml files in the input_154 directory would allow you to define the "shape" of the levels, but not their content.
